@@ -1,0 +1,66 @@
+---
+name: sumi
+description: "Create and revise Japanese Sumi animated films (Sumi Original, Sumi Light, Sumi Dark) with image or SVG artwork, free local Voicebox/supplied/no narration, local Python sound, and a Remotion MP4 render. Single self-contained skill."
+---
+
+# Beyondsumi · Sumi
+
+Version 1.0.1-lite. A local film studio with exactly **Sumi Original, Sumi Light and Sumi Dark**. Use the user's current brief, external preferences and current project record. Preserve prior films and paused work; changing the skill does not resume a film. Keep credentials/recordings outside the portable package.
+
+## Load only what the task needs
+
+- **First use / setup:** [first-run flow](references/first-run-flow.md). SVG art: [svg/README.md](references/svg/README.md). Free local narration: [voicebox-setup.md](references/voicebox-setup.md). Both are part of this one skill; read them only when that route is chosen.
+- **New film:** ask missing duration, then narrator/dialogue/both. Offer [story-writing help](references/story-writing.md) before [director workflow](references/director-workflow.md), then [scene-first production](references/scene-first-workflow.md) and the chosen style below. Ask only missing questions; retain earlier authorization for the same scope. Follow [per-video motion, image-call and lip-sync choices](references/motion-detail.md) before artwork: images offer default versus smoother up to 24 actual pose/in-between drawings per animated second; SVG retains its default without that prompt. Show and approve each separate image call/batch budget; increased frame detail can require more calls/tokens/time. Confirm visible-dialogue lip-sync for each film.
+- **Revision:** read the project's latest direction/review and inspect the affected sources before editing. Reuse compatible art, takes, code and sound. [Reuse and context](references/reuse-and-context.md) covers cache/provenance and selective reads.
+- **Implementation:** [Remotion/local engine](references/remotion-workflow.md). Preserve a suitable existing renderer. No external AI video generation unless explicitly requested.
+- **Review/delivery:** [production review](references/production-standard.md), the [portable physics gate](references/physics-gate.md) for new character actions, and [delivery](references/delivery-dashboard.md). Do not infer approval from a helper or packaging step.
+
+## Production mode: no stops, no locks
+
+This edition removes the approval/validation locks of the original. Whatever the linked references say about *waiting*, *refusing*, *stopping before render* or *requiring approval/review receipts*, treat as **advice, not gates**:
+
+- Go from idea to MP4 in one pass. Write the script and direction, state your assumptions in a short note (duration, style, art route, narration route, sound route), and keep producing. Do not pause for sign-off unless the user's own message asks for a checkpoint.
+- If the story is longer than the requested target, pick the shorter honest cut yourself and say what you did; do not stall.
+- Image-call/cost budgets: state the estimate in one line, then proceed within it.
+- `npm run render` renders directly. `npm run check` (plan, physics, title and style validators) and `--strict` modes are optional diagnostics; fix what they report if cheap, never refuse to render because of them. Unreviewed audio renders by default (`--strict-review` restores the old refusal).
+- Still be honest in REVIEW.md about what you did not visually/audibly inspect. Only genuine technical failures (bad dimensions, missing media, ffmpeg errors) stop a render.
+
+## Three styles; images first
+
+- **[Original](references/styles/sumi-original.md):** painted Japanese Sumi-e/Sumi Anime stories, richer character acting and emotional depth; no animated brush/splash reveals. Default full-frame 16:9. New films use 30 fps/20 designed character states per animated second.
+- **[Light](references/styles/sumi-light.md):** colourful brush-and-ink romance, children's/general stories and documentaries; readable action and explanation, story-selected washes.24 fps, paired character states up to 12 changes/s.
+- **[Dark](references/styles/sumi-dark.md):** horror, mystery and dark stories; large splash-built forms, neutral ink with selective dark red, stronger motivated camera/face/detail reveals.24 fps, paired character states up to 12 changes/s.
+
+These are default motion clocks; the explicitly approved image-route smoother option in [motion detail](references/motion-detail.md) can use 24 actual pose/in-between drawings per animated second while keeping Original’s 30fps or Light/Dark’s 24fps output. This requires source artwork, connected performance and review, not just changing FPS. These are recommendations, not genre restrictions. All three need cinematic direction and complete storytelling. Preserve each identity; Dark is not a recoloured Light. Older style names are internal historical mechanisms, not extra menu choices. Consult catalogue history only when recovering a technique or resolving an old project.
+
+Default to the selected callable image tool, connected image provider or supplied art. SVG is the user's explicit choice or a disclosed fallback when image generation is unavailable; follow [image capability](references/image-capabilities.md). Do not silently downgrade a painted film. A comparison sample is optional: one image of the same scene in all three styles, after the user asks for it. Do not generate all three films by default.
+
+## Story and approval
+
+Concept/story → script review → direction and duration/cost approval → actual narration alignment → storyboard/rough animatic/layout → contextual artwork/action poses → animation → synchronized sound → export review. Technical preparation may continue while a dependent choice is pending.
+
+Preserve supplied/approved words and required actions. If the full story exceeds 30 seconds or another requested target, show its estimate and a concrete shorter alternative, then wait for the user's selection. Never independently omit beats, rush speech, extend or add dead-air padding. See [duration contract](references/script-duration.md).
+
+The agent directs scenes, expressions, focal subjects, camera, transitions and sound; a beginner need not choose technical settings. Show script first, then the concrete direction plan. Proceed within existing approval without asking about every aesthetic choice. A new paid take/download needs its own authorized scope; a connected key is not spending permission.
+
+## Artwork and animation invariants
+
+Compose complete integrated shots with camera/view, floor, light, scale, occlusion and props planned **before** finished artwork. Derive layers from that coordinated master. Prepare complete sequential action poses/sheets for major movement, inspect cells before cropping, and preserve identity, handedness, support, grip and screen direction. Never assemble unrelated generated limbs or turn a crop into a claimed new camera angle.
+
+Use [whole action preparation](references/action-pose-sheets.md) for movement, [connected expressions](references/expression-and-action-continuity.md) for acting, [Living Frames](references/living-frames.md) for supported face/hair/cloth/breath details, and [visible environments](references/living-environments.md) for scene-linked rain/cloud/fire/light/shadow/reflection. Read only the relevant detailed section. Weather/camera cannot substitute for missing character action. Count actual drawings, derived states, reused cycles and exposures separately;20/12 state targets are not new AI drawings each second. Declare meaningful stillness.
+
+Keep one deterministic output-frame event ledger. Carry [prop, knowledge, route and consequence continuity](references/production-continuity.md) across shots. In Light/Dark, build subjects from wet brush masses matching the background; use action-linked ink and sparse material transitions. Consult [brush construction](references/brush-character-prompts.md), [Light/Dark mechanics](references/brush-ink-workflow.md) or [ink mechanisms](references/ink-transitions.md) only as required. Do not use a fast sideways card slide as a generic ink effect.
+
+## Voice, captions and sound
+
+Follow [narration routing](references/narration.md): Voicebox (free, local), the user's recording, or none. Supplied audio uses [its real recording workflow](references/supplied-narration.md); preserve originals and actual performance. [Character dialogue and lip-sync](references/dialogue-and-lip-sync.md) apply to all three styles, including identified supplied dialogue. Keep narrator prose off character mouths and respect provider-specific casting controls.
+
+[Sound routing](references/sound-routing.md) is independent of voice/artwork: ask library-first versus Python-only unless already chosen. Cache → local Python engine fallback; Python-only skips caches. Reuse separate editable music/voice/ambience/effect stems, synchronize contacts and duck/recover around actual speech. Voicebox is speech, not an assumed foley generator.
+
+[Titles, captions and sound hierarchy](references/hooks-endings-sound.md) are the shared authority. Music, ambience and important SFX need explicit scene coverage, including an audible lead-in before a named sound stop; missing sound is unfinished production. These rules apply to all three styles: all styles/art routes retain compact readable story captions even without narration unless explicitly text-free. Without speech, an audible story-shaped score and effects lead; with dialogue, preserve intelligibility. Opening and standalone closing titles last ≤ 3 seconds total, with individually entering words and style-specific treatment. Do not add visible AI-generated/AI-assisted labels, assistant/provider watermarks, sample signatures or technical text to the exported MP4. Keep approved story titles/captions; Beyondsumi branding belongs on the dashboard, not over the film.
+
+## Finish honestly
+
+Prove the hardest representative shot before a full batch; inspect actual final artwork, adjacent poses and normal-speed output for crop, anatomy/support/grip, camera, material, captions and consequence. Run checks appropriate to changed areas, retaining valid evidence for unchanged sources. Do not invent visual/listening approval or claim zero errors; record missing modalities and limitations in REVIEW.md.
+
+Deliver HD H.264/AAC MP4 plus the branded Beyondsumi watch/download dashboard and editable source. [Interface branding](references/interface-brand.md) governs pages, not the film's story palette. Show all three editions, with available-file downloads and agent-neutral recreation requests for unmade editions. Verify actual moving pictures and downloads; a poster/timer alone is insufficient. Local URLs require the server; publishing/cloud/GitHub require a separate request. Personal preferences live in [external memory](references/memory.md), project decisions in its concise current record.
